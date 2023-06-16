@@ -3,13 +3,10 @@ package com.example.demo.dto.response;
 import com.example.demo.entity.Task;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Date;
-import java.sql.Time;
-
 @Getter
+@Setter
 @AllArgsConstructor
 public class TaskResponse {
 

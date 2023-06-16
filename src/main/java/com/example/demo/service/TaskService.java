@@ -5,7 +5,12 @@ import com.example.demo.dto.response.TaskResponse;
 import com.example.demo.entity.Task;
 import com.example.demo.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -27,7 +32,6 @@ public class TaskService {
     }
 
     public TaskResponse updateTask(TaskRequest request, Long taskId) {
-
         Task task = taskRepository.getReferenceById(taskId);
 
         task.setTitle(request.getTitle());
@@ -43,5 +47,19 @@ public class TaskService {
     public TaskResponse deleteTask(Long taskId) {
         taskRepository.deleteById(taskId);
         return new TaskResponse(taskId, "Task deleted successfully");
+    }
+
+    public Task getTaskById(Long taskId) {
+        Optional<Task> optionalTask = taskRepository.findById(taskId);
+
+        if(optionalTask.isPresent()) {
+            return optionalTask.get();
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    public List<Task> getAllTasks() {
+        return taskRepository.findAll();
     }
 }

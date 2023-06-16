@@ -2,10 +2,13 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.request.TaskRequest;
 import com.example.demo.dto.response.TaskResponse;
+import com.example.demo.entity.Task;
 import com.example.demo.service.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -27,5 +30,15 @@ public class TaskController {
     @DeleteMapping("/task/{taskId}")
     public ResponseEntity<TaskResponse> deleteTask(@PathVariable Long taskId) {
         return ResponseEntity.ok(taskService.deleteTask(taskId));
+    }
+
+    @GetMapping("/task/{taskId}")
+    public ResponseEntity<Task> getTaskById(@PathVariable Long taskId) {
+        return ResponseEntity.ok(taskService.getTaskById(taskId));
+    }
+
+    @GetMapping("/task")
+    public ResponseEntity<List<Task>> getAllTasks() {
+        return ResponseEntity.ok(taskService.getAllTasks());
     }
 }
