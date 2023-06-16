@@ -4,10 +4,8 @@ import com.example.demo.dto.request.TaskRequest;
 import com.example.demo.dto.response.TaskResponse;
 import com.example.demo.service.TaskService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-import reactor.core.publisher.Mono;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -16,7 +14,13 @@ public class TaskController {
     private final TaskService taskService;
 
     @PostMapping("/task")
-    public Mono<TaskResponse> createTask(@RequestBody TaskRequest request) {
-        return taskService.addTask(request);
+    public ResponseEntity<TaskResponse> createTask(@RequestBody TaskRequest request) {
+        return ResponseEntity.ok(taskService.addTask(request));
+    }
+
+    @PutMapping("/task/{taskId}")
+    public ResponseEntity<TaskResponse> updateTask(@RequestBody TaskRequest request,
+                                                   @PathVariable Long taskId) {
+        return ResponseEntity.ok(taskService.updateTask(request, taskId));
     }
 }

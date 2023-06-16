@@ -9,7 +9,7 @@ import java.sql.Time;
 @Getter
 public class TaskResponse {
 
-    private Integer id;
+    private Long id;
     private String title;
     private String description;
     private Date due_date;

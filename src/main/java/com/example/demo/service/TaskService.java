@@ -6,7 +6,6 @@ import com.example.demo.entity.Task;
 import com.example.demo.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import reactor.core.publisher.Mono;
 
 @Service
 @RequiredArgsConstructor
@@ -14,7 +13,7 @@ public class TaskService {
 
     private final TaskRepository taskRepository;
 
-    public Mono<TaskResponse> addTask(TaskRequest request) {
+    public TaskResponse addTask(TaskRequest request) {
         Task newTask = Task.builder()
                 .title(request.getTitle())
                 .description(request.getDescription())
@@ -23,7 +22,21 @@ public class TaskService {
                 .is_completed(request.getIs_completed())
                 .build();
 
-        return taskRepository.save(newTask)
-                .map(TaskResponse::new);
+        Task savedTask = taskRepository.save(newTask);
+        return new TaskResponse(savedTask);
+    }
+
+    public TaskResponse updateTask(TaskRequest request, Long taskId) {
+
+        Task task = taskRepository.getReferenceById(taskId);
+
+        task.setTitle(request.getTitle());
+        task.setDescription(request.getDescription());
+        task.setDue_date(request.getDue_date());
+        task.setDue_time(request.getDue_time());
+        task.setIs_completed(request.getIs_completed());
+
+        Task savedTask = taskRepository.save(task);
+        return new TaskResponse(savedTask);
     }
 }
