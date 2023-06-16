@@ -1,27 +1,23 @@
 package com.example.demo.dto.response;
 
 import com.example.demo.entity.Task;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.sql.Date;
 import java.sql.Time;
 
 @Getter
+@AllArgsConstructor
 public class TaskResponse {
 
     private Long id;
-    private String title;
-    private String description;
-    private Date due_date;
-    private Time due_time;
-    private Boolean is_completed;
+    private String message;
 
-    public TaskResponse(Task task) {
+    public TaskResponse(Task task, String m) {
         id = task.getId();
-        title = task.getTitle();
-        description = task.getDescription();
-        due_date = task.getDue_date();
-        due_time = task.getDue_time();
-        is_completed = task.getIs_completed();
+        message = m;
     }
 }

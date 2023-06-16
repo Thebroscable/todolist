@@ -13,7 +13,7 @@ public class TaskService {
 
     private final TaskRepository taskRepository;
 
-    public TaskResponse addTask(TaskRequest request) {
+    public TaskResponse createTask(TaskRequest request) {
         Task newTask = Task.builder()
                 .title(request.getTitle())
                 .description(request.getDescription())
@@ -23,7 +23,7 @@ public class TaskService {
                 .build();
 
         Task savedTask = taskRepository.save(newTask);
-        return new TaskResponse(savedTask);
+        return new TaskResponse(savedTask, "Task added successfully");
     }
 
     public TaskResponse updateTask(TaskRequest request, Long taskId) {
@@ -37,6 +37,11 @@ public class TaskService {
         task.setIs_completed(request.getIs_completed());
 
         Task savedTask = taskRepository.save(task);
-        return new TaskResponse(savedTask);
+        return new TaskResponse(savedTask, "Task updated successfully");
+    }
+
+    public TaskResponse deleteTask(Long taskId) {
+        taskRepository.deleteById(taskId);
+        return new TaskResponse(taskId, "Task deleted successfully");
     }
 }

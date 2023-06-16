@@ -15,12 +15,17 @@ public class TaskController {
 
     @PostMapping("/task")
     public ResponseEntity<TaskResponse> createTask(@RequestBody TaskRequest request) {
-        return ResponseEntity.ok(taskService.addTask(request));
+        return ResponseEntity.ok(taskService.createTask(request));
     }
 
     @PutMapping("/task/{taskId}")
     public ResponseEntity<TaskResponse> updateTask(@RequestBody TaskRequest request,
                                                    @PathVariable Long taskId) {
         return ResponseEntity.ok(taskService.updateTask(request, taskId));
+    }
+
+    @DeleteMapping("/task/{taskId}")
+    public ResponseEntity<TaskResponse> deleteTask(@PathVariable Long taskId) {
+        return ResponseEntity.ok(taskService.deleteTask(taskId));
     }
 }
