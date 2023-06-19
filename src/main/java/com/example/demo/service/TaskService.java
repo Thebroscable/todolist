@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.request.TaskCompleteRequest;
 import com.example.demo.dto.request.TaskRequest;
 import com.example.demo.dto.response.TaskResponse;
 import com.example.demo.entity.Task;
@@ -9,7 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Optional;
 
 @Service
@@ -17,7 +18,6 @@ import java.util.Optional;
 public class TaskService {
 
     private final TaskRepository taskRepository;
-
     public TaskResponse createTask(TaskRequest request) {
         Task newTask = Task.builder()
                 .title(request.getTitle())
@@ -44,6 +44,14 @@ public class TaskService {
         return new TaskResponse(savedTask, "Task updated successfully");
     }
 
+    public TaskResponse completeTask(TaskCompleteRequest request, Long taskId) {
+        Task task = taskRepository.getReferenceById(taskId);
+        task.setIs_completed(request.getIs_completed());
+
+        Task savedTask = taskRepository.save(task);
+        return new TaskResponse(savedTask, "Task completed successfully");
+    }
+
     public TaskResponse deleteTask(Long taskId) {
         taskRepository.deleteById(taskId);
         return new TaskResponse(taskId, "Task deleted successfully");
@@ -59,7 +67,19 @@ public class TaskService {
         }
     }
 
-    public List<Task> getAllTasks() {
-        return taskRepository.findAll();
+    public Collection<Task> getAllTasks() {
+        return taskRepository.findAllTasks();
+    }
+
+    public Collection<Task> getCompletedTasks() {
+        return taskRepository.findAllCompletedTasks();
+    }
+
+    public Collection<Task> getAllTodayTasks() {
+        return taskRepository.findAllTodayTasks();
+    }
+
+    public Collection<Task> getAllUpcomingTasks() {
+        return taskRepository.findAllUpcomingTasks();
     }
 }

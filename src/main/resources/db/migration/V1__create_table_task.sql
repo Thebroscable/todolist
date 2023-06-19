@@ -5,5 +5,5 @@ CREATE TABLE IF NOT EXISTS Task (
     description     TEXT,
     due_date        DATE,
     due_time        TIME,
-    is_completed    BOOLEAN
+    is_completed    BOOLEAN NOT NULL
 );

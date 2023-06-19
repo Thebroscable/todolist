@@ -1,0 +1,176 @@
+*, *:after, *:before {
+    box-sizing: border-box;
+    color: white;
+    font-family: Poppins, sans-serif;
+}
+
+.content * {
+    color: black;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    background-color: #333333;
+    width: 300px;
+    padding: 20px;
+    border-right: 1px solid gray;
+}
+
+.menu-list {
+    margin: 0;
+    display: block;
+    width: 100%;
+    padding: 0px;
+    list-style-type: none;
+}
+
+.menu-item {
+    position: relative;
+    margin-bottom: 5px;
+}
+
+.menu-button {
+    border: 0;
+    padding: 8px 8px;
+    padding-left: 20px;
+    width: 100%;
+    border-radius: 5px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    position: relative;
+    background-color: initial;
+}
+
+.menu-button.active {
+    background-color: #464646 !important;
+    font-weight: bold;
+}
+
+.menu-button:hover {
+    background-color: #464646 !important;
+}
+
+.content {
+    flex-grow: 1;
+    margin: 40px;
+    margin-left: 340px;
+}
+
+.task-table {
+    margin: 0;
+    width: 100%;
+    padding: 0px;
+}
+
+.task-row {
+    border: 0;
+    padding: 12px;
+    padding-left: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 1px solid #F5F5F5;
+}
+
+.task-row:last-child {
+    margin-bottom: 20px;
+}
+
+.task-row:hover {
+    background-color: #e5f1ff;
+    border-left: 5px solid #b3d7ff;
+    border-right: 5px solid #b3d7ff;
+}
+
+.title {
+    width: 50%;
+}
+
+.due_date {
+    width: 20%;
+    padding-right: 10px;
+    text-align: right;
+}
+
+.due_time {
+    width: 20%;
+    padding-left: 10px;
+    text-align: left;
+}
+
+.is_completed {
+    width: 10%;
+}
+
+.add-form  {
+    margin-top: 20px;
+}
+
+.add-form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+    padding-top: 10px;
+}
+
+.add-form input[type="text"],
+.add-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+}
+
+.add-form input[type="date"],
+.add-form input[type="time"] {
+    padding: 6px;
+}
+
+.add-form input[type="submit"],
+.add-form input[type="button"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.add-form #delete-task {
+    background-color: #f33a3a;
+}
+
+.add-form input[type="submit"]:hover,
+.add-form input[type="button"]:hover {
+    background-color: #0056b3;
+}
+
+.add-form #delete-task:hover {
+    background-color: #991f1f;
+}
+
+.message {
+    margin-top: 20px;
+}
+
+input[type="checkbox"] {
+    transform: scale(2);
+}

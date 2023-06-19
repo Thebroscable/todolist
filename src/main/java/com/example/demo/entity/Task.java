@@ -2,6 +2,7 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.antlr.v4.runtime.misc.NotNull;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -29,5 +30,6 @@ public class Task {
 
     private Time due_time;
 
+    @Column(nullable = false)
     private Boolean is_completed;
 }

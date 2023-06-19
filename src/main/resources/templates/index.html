@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tasks</title>
+    <link th:href="@{style.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="menu">
+        <h1>TO DO List</h1>
+        <h5>TASKS</h5>
+        <ul class="menu-list">
+            <li class="menu-item">
+                <button id="upcoming" class="menu-button">Upcoming</button>
+            </li>
+            <li class="menu-item">
+                <button id="today" class="menu-button">Today</button>
+            </li>
+            <li class="menu-item">
+                <button id="all-tasks" class="menu-button">All tasks</button>
+            </li>
+            <li class="menu-item">
+                <button id="completed-tasks" class="menu-button">Completed</button>
+            </li>
+            <li class="menu-item">
+                <button id="add_task" class="menu-button">+ Add task</button>
+            </li>
+        </ul>
+    </div>
+    <div id="dynamic_content" class="content"></div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" th:src="@{script.js}"></script>
+</body>
