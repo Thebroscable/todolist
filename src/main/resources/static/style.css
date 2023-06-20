@@ -174,3 +174,14 @@ body {
 input[type="checkbox"] {
     transform: scale(2);
 }
+
+#request-count {
+    position: absolute;
+    bottom: 0;
+}
+
+#request-count:hover {
+    color: #b3d7ff;
+    text-decoration:  underline;
+    cursor: pointer;
+}

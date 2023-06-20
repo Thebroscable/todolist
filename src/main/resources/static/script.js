@@ -47,6 +47,19 @@ $('#dynamic_content').on('click', '.task-row', function(event) {
     }
 });
 
+document.getElementById('request-count').addEventListener('click', function() {
+    $.ajax({
+        url: '/request-count',
+        method: 'GET',
+        success: function(response) {
+            alert('Request count: '+response);
+        },
+        error: function(xhr, status, error) {
+            console.error(error);
+        }
+    });
+})
+
 function resetButtons(event) {
     var buttons = document.querySelectorAll(".menu-button");
 
@@ -209,6 +222,7 @@ function contentAjaxGetTasks(url) {
         url: url,
         method: 'GET',
         success: function(response) {
+            content.innerHTML = '';
             var table = $('<table id="taskTable" class="task-table">');
 
             response.forEach(function(task) {
@@ -230,7 +244,6 @@ function contentAjaxGetTasks(url) {
                 row.append(checkboxCell);
                 table.append(row);
 
-            content.innerHTML = '';
             table.appendTo(content);
             });
         },
