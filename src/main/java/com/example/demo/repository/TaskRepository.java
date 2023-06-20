@@ -26,6 +26,7 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
                     "AND ( " +
                     "   (due_date > current_date AND due_date <= current_date + interval '7 days') " +
                     "   OR (due_date = current_date AND due_time > current_time) " +
+                    "   OR (due_date = current_date AND due_time IS NULL)" +
                     ") " +
                     "ORDER BY due_date, due_time;")
     Collection<Task> findAllUpcomingTasks();
