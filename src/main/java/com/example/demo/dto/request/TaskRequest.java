@@ -1,7 +1,9 @@
 package com.example.demo.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,8 +15,10 @@ import java.text.SimpleDateFormat;
 @Getter
 @Setter
 @AllArgsConstructor
+@Builder
 public class TaskRequest {
 
+    @NotNull(message = "title cannot be null")
     private String title;
 
     private String description;
@@ -23,6 +27,7 @@ public class TaskRequest {
 
     private String due_time;
 
+    @NotNull(message = "is_completed cannot be null")
     private Boolean is_completed;
 
     public Date getDue_date() {
