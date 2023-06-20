@@ -2,10 +2,7 @@ package com.example.demo.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -15,6 +12,7 @@ import java.text.SimpleDateFormat;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class TaskRequest {
 
@@ -31,7 +29,7 @@ public class TaskRequest {
     private Boolean is_completed;
 
     public Date getDue_date() {
-        if(due_date.isEmpty()) {
+        if(due_date == null || due_date.isEmpty()) {
             return null;
         }
         try {
@@ -44,7 +42,7 @@ public class TaskRequest {
     }
 
     public Time getDue_time() {
-        if(due_time.isEmpty()) {
+        if(due_time == null || due_time.isEmpty()) {
             return null;
         }
         try {
